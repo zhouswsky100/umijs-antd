@@ -1,11 +1,29 @@
 import { defineConfig } from 'umi';
+// import pageRoutes from '.config/router.config'
+
 export default defineConfig({
-  layout: {
-    name: '卫生管理监督系统', 
-    locale: true,
+  nodeModulesTransform: {
+    type: 'none',
   },
   routes: [
-    { path: '/', component: '@/pages/index' },
-    { path: '/table', component: '@/pages/table/index' },
+    {
+      path: '/',
+      component: '@/layout/index',
+      routes: [
+        {
+          path: '/',
+          component: './About',
+          redirect: '/about',
+        },
+        {
+          path: '/table',
+          component: './Table',
+        },
+      ],
+    },
   ],
+  sass: {
+    implementation: require('node-sass'),
+  },
+  cssModulesTypescriptLoader: {},
 });
