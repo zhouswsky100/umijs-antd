@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styles from './index.less';
 import { Button, Table, Tag, Space } from 'antd';
 import axios, { AxiosResponse } from 'axios';
+import { Input } from 'antd';
+const { Search } = Input;
+
 export default () => {
   const columns = [
     {
@@ -35,19 +37,23 @@ export default () => {
     address: string;
   }
   const [userData, setDatas] = useState<Data[]>([] as Data[]);
-
+  const [keyWords, setkeyWords] = useState('');
   useEffect(() => {
     //没有回调会一直执行
     getUserData();
-  }, []);
+  }, [userData, keyWords]);
 
   const getUserData = () => {
     axios.get('/api/tableList').then((res: AxiosResponse<Data[]>) => {
       setDatas(res.data);
     });
   };
+  const changeInput = (keyWords: string) => {
+    setkeyWords(keyWords);
+  };
   return (
     <div>
+      <Search onSearch={changeInput} style={{ width: 200 }}></Search>
       <Table
         columns={columns}
         dataSource={userData}

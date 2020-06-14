@@ -7,7 +7,7 @@ import { Link, useHistory } from 'umi';
 export const index = (props: { children: React.ReactNode }) => {
   const { location } = useHistory();
   return (
-    <Layout className="{styles.layout}">
+    <Layout className={styles.layout}>
       <Sider breakpoint="lg" collapsedWidth="0">
         <div>罗湖卫生局</div>
         <Menu theme="dark" mode="inline" selectedKeys={[location.pathname]}>
