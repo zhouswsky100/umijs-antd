@@ -1,9 +1,12 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
-  title: '罗湖卫生局',
   history: {
     type: 'hash',
+  },
+  layout: {
+    name: '罗湖卫生局',
+    locale: true,
   },
   nodeModulesTransform: {
     type: 'none',
@@ -19,45 +22,35 @@ export default defineConfig({
   },
   routes: [
     {
-      path: '/',
-      component: '@/pages/index',
-      routes: [
-        {
-          path: '/',
-          redirect: '/login',
-        },
-        {
-          path: '/index',
-          component: '@/layout/index',
-          title: '首页',
-        },
-        {
-          path: '/login',
-          component: '@/pages/login',
-          title: '登录',
-        },
-        {
-          path: '/course',
-          routes: [
-            { path: '/course', redirect: '/course/list' },
-            { path: '/course/list', component: './Course', title: '用户列表' },
-            {
-              path: '/course/add',
-              component: './Course/addCourse',
-              title: '添加用户',
-            },
-            {
-              path: '/course/edit/:id',
-              component: './Course/addCourse',
-              title: '编辑用户',
-            },
-          ],
-        },
-        {
-          path: '/about',
-          component: './About',
-        },
-      ],
+      path: '/user',
+      component: '@/pages/User',
+      menu: {
+        name: '用户管理', // 兼容此写法
+      },
+      layout: {
+        hideNav: false,
+      },
+      access: 'canRead',
+    },
+    {
+      path: '/login',
+      component: '@/pages/Login',
+      layout: {
+        hideNav: true,
+        hideMenu: true,
+      },
+      access: 'canRead',
+    },
+    {
+      path: '/about',
+      component: '@/pages/About',
+      menu: {
+        name: '关于我们', // 兼容此写法
+      },
+      layout: {
+        hideNav: false,
+      },
+      access: 'canRead',
     },
   ],
   sass: {
