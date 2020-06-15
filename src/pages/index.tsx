@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './index.less';
+import { Layout, Menu } from 'antd';
+import { Link, useHistory } from 'umi';
 
-export default () => {
-  return (
-    <div>
-      <h1 className={styles.title}>Page index</h1>
-    </div>
-  );
-}
+const index = (props: { children: React.ReactNode }) => {
+  const { location } = useHistory();
+  return <Layout>{props.children}</Layout>;
+};
+
+export default index;
