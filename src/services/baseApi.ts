@@ -11,7 +11,6 @@ function checkStatus(response: { data: Response; status: number }): Response {
 }
 axios.defaults.headers = {
   'Content-type': 'application/x-www-form-urlencoded',
-  accept: 'application/json',
   'Cache-Control': 'no-cache ',
 };
 export const userLogin = (params: object) => {
