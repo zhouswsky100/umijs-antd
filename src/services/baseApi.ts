@@ -9,12 +9,12 @@ function checkStatus(response: { data: Response; status: number }): Response {
 
   return { datas: [], success: false, keywords: '' };
 }
-//   axios.defaults.headers = {
-//     'Content-type': 'application/x-www-form-urlencoded',
-//     'accept':'application/json'
-
-// }
+axios.defaults.headers = {
+  'Content-type': 'application/x-www-form-urlencoded',
+  accept: 'application/json',
+  'Cache-Control': 'no-cache ',
+};
 export const userLogin = (params: object) => {
-  // return axios.post('/users/login',  qs.stringify(params) ).then(checkStatus);
-  return axios.post('/users/login', params).then(checkStatus);
+  return axios.post('/users/login', qs.stringify(params)).then(checkStatus);
+  // return axios.post('/users/login',  params ).then(checkStatus);
 };
